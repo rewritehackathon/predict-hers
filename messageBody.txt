@@ -1,0 +1,7 @@
+Dear ${PERSON_NAME}, 
+
+This is a notification alerting you about your insurance. 
+You may want to go ahead and fix it before it can cause any catastrophic effect.
+
+Yours Truly
+Predict-HERS
