@@ -7,7 +7,7 @@ from sklearn.naive_bayes import GaussianNB
 x = []
 y = []
 
-with open('all.csv') as csvfile:
+with open('C:/Hackathon/Code/data.csv') as csvfile:
 	reader = csv.reader(csvfile, delimiter = ' ')
 	for row in reader:
 		x.append(row[0: (len(row))])
@@ -44,8 +44,6 @@ for i in Y:
 	for j in i:
 		temp.append(float(j))
 	y.append(temp)
-
-#print(y[0])
 
 x = np.asarray(x)
 y = np.asarray(y)
