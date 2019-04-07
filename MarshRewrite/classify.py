@@ -9,7 +9,7 @@ import random
 x = []
 y = []
 
-with open('all.csv') as csvfile:
+with open('C:/Hackathon/Code/data.csv') as csvfile:
 	reader = csv.reader(csvfile, delimiter = ' ')
 	for row in reader:
 		x.append(row[0: (len(row))])
@@ -25,9 +25,6 @@ for i in x:
 Y = []
 for i in y:
 	Y.append(i)
-
-#print(str(X[0]) + "\n")
-#print(str(X[0])  + "     " + str(Y[4000]) + "\n")
 
 X = np.asarray(X)
 Y = np.asarray(Y)
@@ -61,24 +58,3 @@ print("Decision Tree Classifier")
 print(clftree.score(x_test, y_test))
 print("\n")
 
-x = []
-y = []
-
-'''
-for i in range(0, len(X)):
-	a = random.uniform(0, 5)
-	if a <= 1:
-		x.append(X[i])
-		y.append(Y[i])
-print('random sampling')
-
-#SVM polynomial classifier
-
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.5, random_state = 42)
-
-clf = svm.SVC(kernel = 'poly')
-clf.fit(x_train, y_train)
-
-print("SVM polynomial kernel Classifier")
-print(clf.score(x_test, y_test))
-print("\n")'''
