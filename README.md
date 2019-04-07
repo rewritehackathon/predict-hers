@@ -1,4 +1,7 @@
-# Tabler
+# Predict-Hers
+
+We are the company that benefits both the clients and the Carriers/Insurance companies.
+
 [![Backers on Open Collective](https://opencollective.com/tabler/backers/badge.svg)](#backers)
  [![Sponsors on Open Collective](https://opencollective.com/tabler/sponsors/badge.svg)](#sponsors)
 <a href="https://buddy.works"><img src="https://assets.buddy.works/automated-dark.svg" alt="Automated by Buddy" align="right"></a>
