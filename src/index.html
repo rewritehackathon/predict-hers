@@ -1,127 +1,439 @@
----
-layout: default
-title: Homepage
-menu: index
----
 
+<!doctype html>
+<html>
 
-<div class="container">
+<head>
+	<title>Predict-Hers</title>
+	<script src="https://www.chartjs.org/dist/2.7.3/Chart.bundle.js"></script>
+	<script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<style>
+		html{
+			scroll-behavior: smooth;
+		}
+	canvas {
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
+	#message{
+        text-align: left;
+        padding-left:20%;
+		padding-right:20%;
+	}
 
-	{% include page-title.html title="Dashboard" %}
+	#text{
+		text-align: left;
+		padding-left:20%;
+		padding-right:20%;
+	}
+	body{
+		background-color: rgba(197, 195, 195, 0.2);
+		margin:0px;
+		text-align: center;
+		font-family: 'Raleway', sans-serif;
+		
+	}
+	.login-holder{
+		display: inline-block;
+	
+		border-radius: 15px;
+		
+		text-align: center;
+	
+		vertical-align: -webkit-baseline-middle;
+		width:50%;
+		margin-top: 10%;
+		padding-top:15%;
+		padding-bottom:25%;
+		background-color: #fff;
+	}
+	button{
+    background-color:   #3084e4;
+        border: none;       
+        margin-top: 20px;
+        color: white;
+       
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        width:20%;
+        height:48px;
+}
+	.header{
+		position: relative;
+		margin:0px;
+		text-align: left;
+		top:0px;
+		width: 100%;
+		background-color: #fff;
+		box-shadow: 10px 10px 10px rgba(0,0,0,0.3);
+		
+		
+	}
+	ul{
+		margin:0px;
+	}
+	
+	ul li{
+		display:inline-flex;
+		padding-right: 5%;
+	}
 
-	<div class="row row-cards">
+	#dashboard{
+		padding-top:10%;
+		display:none;
+		background-color: white;
+		text-align: center;
+	}
+	#chart{
+		text-align: center;
+	}
+	#company{
+		margin-top:0%;
+		padding-top:10%;
+		display: none;
+		background-color: #fff;
+		text-align: center;
 
-		<div class="col-6 col-sm-4 col-lg-2">
-			{% include cards/stats-1.html number=43 title="New Tickets" percentage=6 %}
-		</div>
-		<div class="col-6 col-sm-4 col-lg-2">
-			{% include cards/stats-1.html number=17 title="Closed Today" percentage=-3 %}
-		</div>
-		<div class="col-6 col-sm-4 col-lg-2">
-			{% include cards/stats-1.html number=7 title="New Replies" percentage=9 %}
-		</div>
-		<div class="col-6 col-sm-4 col-lg-2">
-			{% include cards/stats-1.html number="27.3K" title="Followers" percentage=3 %}
-		</div>
-		<div class="col-6 col-sm-4 col-lg-2">
-			{% include cards/stats-1.html number="$95" title="Daily Earnings" percentage=-2 %}
-		</div>
-		<div class="col-6 col-sm-4 col-lg-2">
-			{% include cards/stats-1.html number=621 title="Products" percentage=-1 %}
-		</div>
-		<div class="col-lg-6">
-			{% include cards/development-activity.html %}
-			{% comment %}{% include cards/tasks.html %}{% endcomment %}
+	}
+	.companies{
+		text-align: center;
+		border:2px solid rgb(0, 253, 148);
+		border-radius: 15px;
+		width:40%;
+		height:5%;
+		padding-left:10%;
+		padding-right:10%;
+		padding-top:4%;
+		padding-bottom:4%;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom:2%;
 
-			<div class="row">
-				<div class="col-sm-6">
-					{% include cards/digit.html color="red" title="New feedback" digit="62" width="28%" %}
-				</div>
-				<div class="col-sm-6">
-					{% include cards/digit.html color="green" title="Today profit" digit="$652" width="84%" %}
-				</div>
+	}
+	.companies:hover{
+		border:2px solid rgb(2, 255, 128);
+		background-color:  rgba(197, 195, 195, 0.2);
+	}
+	</style>
+	
+	<script>
+		function showCompany(){
+			document.getElementById("company").style.display = "block";
+			document.getElementById("login").style.display = "none";
+		}
+		function showDashboard(){
+			document.getElementById("dashboard").style.display = "block";
+			document.getElementById("company").style.display = "none";
+		}
+	</script>
+</head>
+
+<body>
+	<div class="header">
+		<ul>
+			<li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+			</li>
+			<li>
+					<h2>PredictHers</h2>
+			</li>
+		</ul>
+		
+	</div>
+
+	<div id="login">
+		
+		<div class="login-holder">
+				<button onclick="showCompany()">Login</button>
+		</div>
+	</div>
+	<div id="company">
+		<div id="text">
+			<h3>Welcome</h3>
+			<h5>Hi! This is your Client Business Health dashboard, you can navigate through the list of companies. Anything that seems highlighted , should be attended to as soon as possible to make sure is safe and everything is protected</h5>
+		</div>
+
+		<div onclick="showDashboard()" class="companies">
+		"Company One"
+		</div>
+		<div style="background-color: rgba(255, 208, 0, 0.836)" onclick="showDashboard()" class="companies">
+				"Company Two"
+		</div>
+		<div onclick="showDashboard()" class="companies">
+				"Company Three"
+		</div>
+		<div onclick="showDashboard()" class="companies">
+				"Company Four"
+		</div>
+	
+	</div>
+	<div id="dashboard">
+		<div id="chart">
+			
+
+				<div id="container" style="width: 100%; ">
+						<canvas id="canvas"></canvas>
+					
+					</div>
+					
+		</div>
+		<div id="details">
+				<div id="message">
+					<h2>Anomaly Detected</h2>
+					<h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset shee</h3>
+					
+                </div>
+                <button href="#detail-chart" onclick="getDetails()">Get Details</button>
+			<div id="detail-chart">
+					<div id="container2" style="width: 70%; ">
+							<canvas id="canvas2"></canvas>
+						
+						</div>
 			</div>
-		</div>
-
-		<div class="col-md-6">
-			<div class="alert alert-primary">Are you in trouble? <a href="{{ site.base }}/docs/index.html" class="alert-link">Read our documentation</a> with code samples.</div>
-
-			<div class="row">
-				<div class="col-sm-6">
-					{% include cards/chart.html height=12 title="Chart title" id="chart-donut" data="donut" %}
-				</div>
-				<div class="col-sm-6">
-					{% include cards/chart.html height=12 title="Chart title" id="chart-pie" data="pie" %}
-				</div>
-
-				<div class="col-sm-12">
-					<a href="https://gumroad.com/l/tabler-email?utm_source=demo" class="card" target="_blank">
-						<img src="/demo/card-demo.jpg" alt="" class="card-img">
-					</a>
-				</div>
-			</div>
-		</div>
-
-
-		<div class="col-sm-6 col-lg-3">
-			{% include cards/icon-box.html color="blue" icon="fe fe-dollar-sign" value="132" description="Sales" subtitle="12 waiting payments" %}
-		</div>
-		<div class="col-sm-6 col-lg-3">
-			{% include cards/icon-box.html color="green" icon="fe fe-shopping-cart" value="78" description="Orders" subtitle="32 shipped" %}
-		</div>
-		<div class="col-sm-6 col-lg-3">
-			{% include cards/icon-box.html color="red" icon="fe fe-users" value="1,352" description="Members" subtitle="163 registered today" %}
-		</div>
-		<div class="col-sm-6 col-lg-3">
-			{% include cards/icon-box.html color="yellow" icon="fe fe-message-square" value="132" description="Comments" subtitle="16 waiting" %}
+		
 		</div>
 	</div>
 
-	<div class="row row-cards row-deck">
-		{% for article in site.data.articles limit: 2 %}
-		<div class="col-lg-6">
-			{% include cards/blog-single.html article=article type="aside" %}
-		</div>
-		{% endfor %}
-	</div>
+	
 
-	<div class="row row-cards row-deck">
 
-		<div class="col-12">
-			{% include cards/table-users.html %}
-		</div>
+<script>
+	var lineChartData = {
+		labels: ["day1","day2","day3","day4","day5","day6","day7","day8","day9","day10","day11","day12"],
+		datasets: [{
+			label: 'My First dataset',
+			borderColor: window.chartColors.red,
+			backgroundColor: window.chartColors.red,
+			fill: false,
+			data: [
+			0.713815789,
+0.575657895,
+0.771381579,
+0.840460526,
+0.840460526,
+0.848684211,
+0.838815789,
+0.850328947,
+0.671052632,
+0.559210526,
+0.805921053,
+0.809210526
 
-		<div class="col-sm-6 col-lg-4">
-			{% include cards/browsers.html %}
-		</div>
-		<div class="col-sm-6 col-lg-4">
-			{% include cards/projects-list.html %}
-		</div>
-		<div class="col-md-6 col-lg-4">
-			{% include cards/members.html %}
-		</div>
+			],
+			yAxisID: 'y-axis-1',
+		}, {
+			label: 'My Second dataset',
+			borderColor: window.chartColors.blue,
+			backgroundColor: window.chartColors.blue,
+			fill: false,
+			data: [
+			0.666666667,
+0.714285714,
+0.666666667,
+0.700000000,
+0.560000000,
+0.700000000,
+0.714285714,
+0.625000000,
+0.520000000,
+0.461538462,
+0.636363636,
+0.750000000,
+0.785714286
 
-		<div class="col-md-6 col-lg-12">
-			<div class="row">
-				<div class="col-sm-6 col-lg-3">
-					{% include cards/chart-bg.html id="chart-bg-users-1" %}
-				</div>
-				<div class="col-sm-6 col-lg-3">
-					{% include cards/chart-bg.html id="chart-bg-users-2" offset=60 aggregate=true color="red" rate="-3%" %}
-				</div>
-				<div class="col-sm-6 col-lg-3">
-					{% include cards/chart-bg.html id="chart-bg-users-3" offset=50 color="green" rate="-3%" %}
-				</div>
-				<div class="col-sm-6 col-lg-3">
-					{% include cards/chart-bg.html id="chart-bg-users-4" offset=40 color="yellow" rate="9%" %}
-				</div>
-			</div>
-		</div>
 
-		<div class="col-12">
-			{% include cards/invoices.html %}
-		</div>
-	</div>
-</div>
+			],
+			yAxisID: 'y-axis-2'
+		}, {
+			label: 'My Second dataset',
+			borderColor: window.chartColors.purple,
+			backgroundColor: window.chartColors.purple,
+			fill: false,
+			data: [
+			0.720868993,
+0.557603687,
+0.672218565,
+0.839368005,
+0.553851218,
+0.848584595,
+0.312376564,
+0.557142857,
+0.661619487,
+0.557603687,
+0.827518104,
+0.82883476
 
-{% include tabler-emails.html %}
+
+			],
+			yAxisID: 'y-axis-2'
+		}, {
+			label: 'My Second dataset',
+			borderColor: window.chartColors.yellow,
+			backgroundColor: window.chartColors.yellow,
+			fill: false,
+			data: [
+			0.711228186,
+0.569311821,
+0.775436286,
+0.838985841,
+0.844912743,
+0.844254198,
+0.808034244,
+0.851498189,
+0.616397761,
+0.571945999,
+0.828119855,
+0.830095489
+
+
+			],
+			yAxisID: 'y-axis-2'
+		}]
+	};
+
+	window.onload = function() {
+		var ctx = document.getElementById('canvas').getContext('2d');
+		window.myLine = Chart.Line(ctx, {
+			data: lineChartData,
+			options: {
+				responsive: true,
+				hoverMode: 'index',
+				stacked: false,
+				title: {
+					display: true,
+					text: 'Sensors Data'
+				},
+				scales: {
+					yAxes: [{
+						type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+						display: true,
+						position: 'left',
+						id: 'y-axis-1',
+					}, {
+						type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+						display: true,
+						position: 'right',
+						id: 'y-axis-2',
+
+						// grid line settings
+						gridLines: {
+							drawOnChartArea: false, // only want the grid lines for one axis to show up
+						},
+					}],
+				}
+			}
+		});
+	};
+
+	// document.getElementById('randomizeData').addEventListener('click', function() {
+	// 	lineChartData.datasets.forEach(function(dataset) {
+	// 		dataset.data = dataset.data.map(function() {
+	// 			return randomScalingFactor();
+	// 		});
+	// 	});
+
+	// 	window.myLine.update();
+	// });
+</script>
+
+<script>
+
+	function getDetails(){
+		
+		//var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+		var color = Chart.helpers.color;
+		var barChartData = {
+			labels: ['CO2', 'CO', 'OZONE', 'Sulphur Dixoxide'],
+			datasets: [{
+				label: 'Dataset 1',
+				backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+				borderColor: window.chartColors.red,
+				borderWidth: 1,
+				data: [
+					8,
+					2,
+					5,
+					3,
+					1,
+					6
+				]
+			}]
+
+		};
+
+			var ctx = document.getElementById('canvas2').getContext('2d');
+			window.myBar = new Chart(ctx, {
+				type: 'bar',
+				data: barChartData,
+				options: {
+					responsive: true,
+					legend: {
+						position: 'top',
+					},
+					title: {
+						display: true,
+						text: 'Chart.js Bar Chart'
+					}
+				}
+			});
+
+		
+
+	
+
+		var colorNames = Object.keys(window.chartColors);
+		// document.getElementById('addDataset').addEventListener('click', function() {
+		// 	var colorName = colorNames[barChartData.datasets.length % colorNames.length];
+		// 	var dsColor = window.chartColors[colorName];
+		// 	var newDataset = {
+		// 		label: 'Dataset ' + (barChartData.datasets.length + 1),
+		// 		backgroundColor: color(dsColor).alpha(0.5).rgbString(),
+		// 		borderColor: dsColor,
+		// 		borderWidth: 1,
+		// 		data: []
+		// 	};
+
+		// 	for (var index = 0; index < barChartData.labels.length; ++index) {
+		// 		newDataset.data.push(randomScalingFactor());
+		// 	}
+
+		// 	barChartData.datasets.push(newDataset);
+		// 	window.myBar.update();
+		// });
+
+		// document.getElementById('addData').addEventListener('click', function() {
+		// 	if (barChartData.datasets.length > 0) {
+		// 		var month = MONTHS[barChartData.labels.length % MONTHS.length];
+		// 		barChartData.labels.push(month);
+
+		// 		for (var index = 0; index < barChartData.datasets.length; ++index) {
+		// 			// window.myBar.addData(randomScalingFactor(), index);
+		// 			barChartData.datasets[index].data.push(randomScalingFactor());
+		// 		}
+
+		// 		window.myBar.update();
+		// 	}
+		// });
+
+		// document.getElementById('removeDataset').addEventListener('click', function() {
+		// 	barChartData.datasets.pop();
+		// 	window.myBar.update();
+		// });
+
+		// document.getElementById('removeData').addEventListener('click', function() {
+		// 	barChartData.labels.splice(-1, 1); // remove the label first
+
+		// 	barChartData.datasets.forEach(function(dataset) {
+		// 		dataset.data.pop();
+		// 	});
+
+		// 	window.myBar.update();
+		// });
+	}
+	
+	</script>
+</body>
+
+</html>
