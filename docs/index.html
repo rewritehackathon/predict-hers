@@ -21,6 +21,9 @@
         padding-left:20%;
 		padding-right:20%;
 	}
+	#detail-chart{
+		margin:5%;
+	}
 
 	#text{
 		text-align: left;
@@ -201,11 +204,19 @@
 					label: 'Dataset 1'
 				}],
 				labels: [
-					'Red',
-					'Orange',
-					'Yellow',
-					'Green',
-					'Blue'
+				"Gaussian Naive Bayes",
+"SVM rbf",
+"Decision Tree",
+"Random Forest",
+"Adaboost",
+"Bagging Classifier",
+"Extra trees",
+"Gradient boosting",
+"kneighbourshybrid",
+"kneighbours",
+"L1 Logistic Regression",
+"L2 Logistic Regression"
+
 				]
 			},
 			options: {
@@ -271,7 +282,9 @@
 
 	<div id="login">
 		
+		
 		<div class="login-holder">
+				<h2>Welcome! Login to check the insurance health</h2>
 				<button onclick="showCompany()">Login</button>
 		</div>
 	</div>
@@ -312,9 +325,9 @@
 		<div id="details">
 				<div id="message">
 					<h2>Anomaly Detected</h2>
-					<h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset shee</h3>
-					
-                </div>
+					<h3>Looks like an Anamoly has been detected - One of the sensors detected levels of gas that should be looked into carefully. This could mean you need some repairwork in place, as this may cause damage to the facility in the future.</h3>
+					<h3>Please click to get more details</h3>
+				</div>
                 <button href="#detail-chart" onclick="getDetails()">Get Details</button>
 			<div id="detail-chart">
 					<div id="container2" style="width: 70%; ">
@@ -332,7 +345,7 @@
 <script>
 		
 	var lineChartData = {
-		labels: ["day1","day2","day3","day4","day5","day6","day7","day8","day9","day10","day11","day12","day5","day6","day7","day8","day9","day10","day11","day12",,"day5","day6","day7","day8","day9","day10","day11","day12"],
+		labels: ["day1","day2","day3","day4","day5","day6","day7","day8","day9","day10","day11","day12","day13","day14","day15","day16","day17","day18","day19","day20",,"day21","day22","day23","day24","day25","day26","day27","day28"],
 		datasets: [{
 			label: 'CO2',
 			borderColor: window.chartColors.red,
@@ -568,7 +581,7 @@
 		var barChartData = {
 			labels: ['CO2', 'CO', 'OZONE', 'Sulphur Dixoxide'],
 			datasets: [{
-				label: 'Leak Details',
+				label: 'Smoke Details',
 				backgroundColor: [
 					window.chartColors.red,
 					window.chartColors.purple,
