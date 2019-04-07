@@ -45,6 +45,10 @@ How well the algorithms are working and highlights which company needs the immed
 The variation of each gaseous hazard as a graph.
 SMS and Email notifications are sent as soon as the components cross the hazard levels.
 
+**chatbot**
+This automates the underwriting process that Marsh is currently doing manually.
+bot.html is the main executable file and index.js and style.css are supporting files.
+
 **How to run**
 Run on python3, Hackathon.py.
 It automatically runs another python script automaticEmail.py and Send_sms.py and Web.py
