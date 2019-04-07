@@ -36,7 +36,7 @@ Sensor Data
 IoT
 SMS and E-mail APIs
 
-**MarshRewrite**
+**src/MarshRewrite**
 This is the folder where the code for all the algorithms that were used have been uploaded along with the email and sms notification python files.
 
 **src**
