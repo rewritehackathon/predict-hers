@@ -47,4 +47,4 @@ SMS and Email notifications are sent as soon as the components cross the hazard 
 
 **How to run**
 Run the python3 Hackathon.py.
-It automatically runs another python script AutomaticEmail.py and SendSMS.py and Web.py
+It automatically runs another python script automaticEmail.py and Send_sms.py and Web.py
