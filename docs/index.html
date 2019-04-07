@@ -24,8 +24,15 @@
 
 	#text{
 		text-align: left;
-		padding-left:20%;
-		padding-right:20%;
+		padding-left:5%;
+		padding-right:5%;
+		padding-top:10%;
+		padding-bottom:10%;
+		margin-left: 10%;
+		margin-right:10%;
+		margin-bottom:5%;
+		border: 1px solid  rgba(0, 0, 0, 0.2);
+		border-radius:15;
 	}
 	body{
 		background-color: rgba(197, 195, 195, 0.2);
@@ -106,8 +113,8 @@
 		height:5%;
 		padding-left:10%;
 		padding-right:10%;
-		padding-top:4%;
-		padding-bottom:4%;
+		padding-top:2%;
+		padding-bottom:2%;
 		margin-left: auto;
 		margin-right: auto;
 		margin-bottom:2%;
@@ -123,10 +130,129 @@
 		function showCompany(){
 			document.getElementById("company").style.display = "block";
 			document.getElementById("login").style.display = "none";
+
+			makeChart();
+
 		}
 		function showDashboard(){
 			document.getElementById("dashboard").style.display = "block";
 			document.getElementById("company").style.display = "none";
+			
+		}
+
+		function goBack(){
+			if(document.getElementById("dashboard").style.display =="block"){
+				document.getElementById("dashboard").style.display = "none";
+				document.getElementById("company").style.display = "block";
+				
+			}
+			else{
+				if(document.getElementById("company").style.display =="block"){
+					document.getElementById("company").style.display =="none";
+					document.getElementById("login").style.display = "block";
+				}
+			}
+		}
+
+		function makeChart(){
+
+			var randomScalingFactor = function() {
+			return Math.round(Math.random() * 100);
+		};
+
+		var config = {
+			type: 'pie',
+			data: {
+				datasets: [{
+					data: [
+					0.711228186,
+0.569311821,
+0.775436286,
+0.838985841,
+0.844912743,
+0.844254198,
+0.808034244,
+0.851498189,
+0.616397761,
+0.571945999,
+0.828119855,
+0.830095489
+
+					],
+					backgroundColor: [
+					window.chartColors.purple,
+						window.chartColors.orange,
+						window.chartColors.blue,
+						window.chartColors.red,
+						"#ff0505",
+						"#ff8800",
+						"#ffcc00",
+					"#85f702",
+					window.chartColors.orange,
+						
+						"#7f52ea",
+						window.chartColors.blue,
+						"#f7254f",
+						"#ff0033",
+					
+						"#d84749"
+
+					],
+					label: 'Dataset 1'
+				}],
+				labels: [
+					'Red',
+					'Orange',
+					'Yellow',
+					'Green',
+					'Blue'
+				]
+			},
+			options: {
+				responsive: true
+			}
+		};
+
+		
+			var ctx = document.getElementById('chart-area').getContext('2d');
+			window.myPie = new Chart(ctx, config);
+			window.myPie.update();
+		
+
+		// document.getElementById('randomizeData').addEventListener('click', function() {
+		// 	config.data.datasets.forEach(function(dataset) {
+		// 		dataset.data = dataset.data.map(function() {
+		// 			return randomScalingFactor();
+		// 		});
+		// 	});
+
+		// 	window.myPie.update();
+		// });
+
+		var colorNames = Object.keys(window.chartColors);
+		// document.getElementById('addDataset').addEventListener('click', function() {
+		// 	var newDataset = {
+		// 		backgroundColor: [],
+		// 		data: [],
+		// 		label: 'New dataset ' + config.data.datasets.length,
+		// 	};
+
+		// 	for (var index = 0; index < config.data.labels.length; ++index) {
+		// 		newDataset.data.push(randomScalingFactor());
+
+		// 		var colorName = colorNames[index % colorNames.length];
+		// 		var newColor = window.chartColors[colorName];
+		// 		newDataset.backgroundColor.push(newColor);
+		// 	}
+
+		// 	config.data.datasets.push(newDataset);
+		// 	window.myPie.update();
+		// });
+
+		// document.getElementById('removeDataset').addEventListener('click', function() {
+		// 	config.data.datasets.splice(0, 1);
+		// 	window.myPie.update();
+		// });
 		}
 	</script>
 </head>
@@ -134,7 +260,7 @@
 <body>
 	<div class="header">
 		<ul>
-			<li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+			<li onclick="goBack()" class="svg"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
 			</li>
 			<li>
 					<h2>PredictHers</h2>
@@ -151,8 +277,12 @@
 	</div>
 	<div id="company">
 		<div id="text">
-			<h3>Welcome</h3>
-			<h5>Hi! This is your Client Business Health dashboard, you can navigate through the list of companies. Anything that seems highlighted , should be attended to as soon as possible to make sure is safe and everything is protected</h5>
+			<h2>Welcome</h2>
+			<h3>Hi! This is your Client Business Health dashboard, you can navigate through the list of companies. Anything that seems highlighted , should be attended to as soon as possible to make sure is safe and everything is protected</h3>
+			<div id="canvas-holder" style="width:80%">
+		<canvas id="chart-area"></canvas>
+	</div>
+	
 		</div>
 
 		<div onclick="showDashboard()" class="companies">
@@ -200,12 +330,18 @@
 
 
 <script>
+		
 	var lineChartData = {
-		labels: ["day1","day2","day3","day4","day5","day6","day7","day8","day9","day10","day11","day12"],
+		labels: ["day1","day2","day3","day4","day5","day6","day7","day8","day9","day10","day11","day12","day5","day6","day7","day8","day9","day10","day11","day12",,"day5","day6","day7","day8","day9","day10","day11","day12"],
 		datasets: [{
-			label: 'My First dataset',
+			label: 'CO2',
 			borderColor: window.chartColors.red,
 			backgroundColor: window.chartColors.red,
+			type: 'line',
+			pointRadius: 0,
+			fill: false,
+			lineTension: 0,
+			borderWidth: 2,
 			fill: false,
 			data: [
 			0.713815789,
@@ -219,14 +355,32 @@
 0.671052632,
 0.559210526,
 0.805921053,
-0.809210526
+0.809210526,
+0.666666667,
+0.714285714,
+0.666666667,
+0.700000000,
+0.560000000,
+0.700000000,
+0.714285714,
+0.625000000,
+0.520000000,
+0.461538462,
+0.636363636,
+0.750000000,
+0.785714286,
 
 			],
 			yAxisID: 'y-axis-1',
 		}, {
-			label: 'My Second dataset',
+			label: 'CO levels',
 			borderColor: window.chartColors.blue,
 			backgroundColor: window.chartColors.blue,
+			type: 'line',
+			pointRadius: 0,
+			fill: false,
+			lineTension: 0,
+			borderWidth: 2,
 			fill: false,
 			data: [
 			0.666666667,
@@ -241,18 +395,19 @@
 0.461538462,
 0.636363636,
 0.750000000,
-0.785714286
-
-
-			],
-			yAxisID: 'y-axis-2'
-		}, {
-			label: 'My Second dataset',
-			borderColor: window.chartColors.purple,
-			backgroundColor: window.chartColors.purple,
-			fill: false,
-			data: [
-			0.720868993,
+0.785714286,
+0.713815789,
+0.575657895,
+0.771381579,
+0.840460526,
+0.840460526,
+0.848684211,
+0.838815789,
+0.850328947,
+0.671052632,
+0.559210526,
+0.805921053,
+0.809210526,
 0.557603687,
 0.672218565,
 0.839368005,
@@ -269,9 +424,54 @@
 			],
 			yAxisID: 'y-axis-2'
 		}, {
-			label: 'My Second dataset',
+			label: 'Sulphur Dioxide',
+			borderColor: window.chartColors.purple,
+			type: 'line',
+			pointRadius: 0,
+			fill: false,
+			lineTension: 0,
+			borderWidth: 2,
+			backgroundColor: window.chartColors.purple,
+			fill: false,
+			data: [
+			0.720868993,
+0.557603687,
+0.672218565,
+0.839368005,
+0.553851218,
+0.848584595,
+0.312376564,
+0.557142857,
+0.661619487,
+0.557603687,
+0.827518104,
+0.82883476,
+0.666666667,
+0.714285714,
+0.666666667,
+0.700000000,
+0.560000000,
+0.700000000,
+0.714285714,
+0.625000000,
+0.520000000,
+0.461538462,
+0.636363636,
+0.750000000,
+0.785714286,
+
+
+			],
+			yAxisID: 'y-axis-2'
+		}, {
+			label: 'Ozone',
 			borderColor: window.chartColors.yellow,
 			backgroundColor: window.chartColors.yellow,
+			type: 'line',
+			pointRadius: 0,
+			fill: false,
+			lineTension: 0,
+			borderWidth: 2,
 			fill: false,
 			data: [
 			0.711228186,
@@ -284,9 +484,29 @@
 0.851498189,
 0.616397761,
 0.571945999,
-0.828119855,
-0.830095489
-
+0.666666667,
+0.714285714,
+0.666666667,
+0.700000000,
+0.560000000,
+0.700000000,
+0.714285714,
+0.625000000,
+0.520000000,
+0.461538462,
+0.636363636,
+0.750000000,
+0.785714286,
+0.785714286,
+0.720868993,
+0.557603687,
+0.672218565,
+0.839368005,
+0.553851218,
+0.848584595,
+0.312376564,
+0.557142857,
+0.661619487,
 
 			],
 			yAxisID: 'y-axis-2'
@@ -294,6 +514,7 @@
 	};
 
 	window.onload = function() {
+	
 		var ctx = document.getElementById('canvas').getContext('2d');
 		window.myLine = Chart.Line(ctx, {
 			data: lineChartData,
@@ -347,9 +568,21 @@
 		var barChartData = {
 			labels: ['CO2', 'CO', 'OZONE', 'Sulphur Dixoxide'],
 			datasets: [{
-				label: 'Dataset 1',
-				backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-				borderColor: window.chartColors.red,
+				label: 'Leak Details',
+				backgroundColor: [
+					window.chartColors.red,
+					window.chartColors.purple,
+					window.chartColors.yellow,
+					window.chartColors.green,
+					
+				],
+				borderColor:  [
+					window.chartColors.red,
+					window.chartColors.purple,
+					window.chartColors.yellow,
+					window.chartColors.green,
+					
+				],
 				borderWidth: 1,
 				data: [
 					8,
