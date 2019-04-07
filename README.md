@@ -54,3 +54,5 @@ Run on python3, Hackathon.py.
 It automatically runs another python script automaticEmail.py and Send_sms.py and Web.py
 
 <img width="1016" alt="Screenshot 2019-04-07 at 11 59 59 AM" src="https://user-images.githubusercontent.com/47340709/55688398-dd6f4200-592c-11e9-9fe3-feaf33fdc91d.png">
+
+To check the live dashboard, the website is hosted on this link: https://radhikab41.github.io/predict-hers/
