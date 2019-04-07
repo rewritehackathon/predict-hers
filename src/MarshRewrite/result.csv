@@ -1,0 +1,14 @@
+Classifier,Score
+Naive Bayes classifier,0.7138157894736842
+SVM rbf kernel Classifier,0.5756578947368421
+Decision Tree Classifier,0.7927631578947368
+Random Forest classifier,0.8322368421052632
+AdaBoost classifier,0.8404605263157895
+Bagging classifier,0.8519736842105263
+ExtraTrees classifier,0.8174342105263158
+GradientBoostingClassifier,0.850328947368421
+Just trying something for bagging,0.6447368421052632
+KNeighborsClassifier,0.5592105263157895
+SGDClassifier,0.5608953258722844
+Logistic Regression l1 type classifier,0.805921052631579
+Logistic Regression l2 type classifier,0.8092105263157895
