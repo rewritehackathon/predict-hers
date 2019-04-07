@@ -1,0 +1,55 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <style>
+      form{
+        height: 50vh;
+       }
+      body{
+        height: 90vh;
+      }
+     </style>
+
+   <form id="form">
+
+  <input type="text" name="tester" value="Enter your answer here" id="ok" cf-questions="Hello Emma!, Welcome to Marsh, how can i help you today?" />
+  
+ <input type="text" name="business" id="ok" cf-questions="What kind of business?" />
+
+<input type="text" name="location" id="ok" cf-questions="Where are you planning to set up your business?" />
+
+  <fieldset cf-questions="Property Details?">
+    <label for="intro-yes">Personal
+                  <input type="radio" name="cfc-intro" id="intro-yes" value="yes">
+              </label>
+
+    <label for="intro-no">Rental
+                  <input type="radio" name="cfc-intro" id="intro-no" value="no">
+              </label>
+  </fieldset>
+<!-- <input id="gr81" type="text"  name="cfc-step1" cf-questions="Since when is this property in your possession?" cf-conditional-cfc-intro="yes" />
+ 
+  <fieldset cf-conditional-cfc-step1="<strong>{gr8}!</strong> asdtfedd ? "> 
+     <input type="text" name="business" id="path-a" cf-conditional-cfc-step1="yes" />
+  </fieldset> -->
+  <input type="text" id="gr8" name="cfc-step1" cf-questions="Since when is this property in your possession?" cf-conditional-cfc-intro="yes" />
+
+  <fieldset cf-questions="<strong>{gr8}!</strong> Is there a building constructed on this property?">
+    <input required type="radio" name="cfc-path" id="path-a" value="a" cf-conditional-cfc-step1="^[0-9]+$">
+    <label for="path-a">Yes</label>
+
+    <input required type="radio" name="cfc-path" id="path-b" value="b" cf-conditional-cfc-step1="^[0-9]+$">
+    <label for="path-b">No</label>
+  
+  <input type="text" id="gr8" name= "test"cf-questions=" Can you tell me what the rental value is ?" cf-conditional-cfc-intro="no" />
+  </fieldset>
+ 
+
+  <input id="outsider" type="text" cf-questions="These are your available options: Workers Compensation Insurance, General Liability Insurance, Property Insurance, Business Interruption Insurance" />
+</form>
+<div id="cf-context" role="cf-context" cf-context></div>
+   
+    </body>
+</html>
