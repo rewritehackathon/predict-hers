@@ -44,3 +44,10 @@ This folder consists of the website that we will be using on our side. This give
 How well the algorithms are working and highlights which company needs the immediate attention.
 The variation of each gaseous hazard as a graph.
 SMS and Email notifications are sent as soon as the components cross the hazard levels.
+
+
+
+**How to run**
+
+Run the python3 Hackathon.py
+It automatically runs another python script AutomaticEmail.py and SendSMS.py and Web.py
