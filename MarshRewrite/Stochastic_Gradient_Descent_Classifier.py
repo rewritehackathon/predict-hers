@@ -7,7 +7,7 @@ from sklearn.linear_model import SGDClassifier
 x = []
 y = []
 
-with open('all.csv') as csvfile:
+with open('C:/Hackathon/Code/data.csv') as csvfile:
 	reader = csv.reader(csvfile, delimiter = ' ')
 	for row in reader:
 		x.append(row[0: (len(row))])
@@ -24,8 +24,6 @@ Y = []
 for i in y:
 	Y.append(i)
 
-#print(str(X[0]) + "\n")
-#print(str(X[0])  + "     " + str(Y[4000]) + "\n")
 
 X = np.asarray(X)
 Y = np.asarray(Y)
