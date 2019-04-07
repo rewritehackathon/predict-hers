@@ -8,7 +8,7 @@ from sklearn.neighbors import KNeighborsClassifier
 x = []
 y = []
 
-with open('all.csv') as csvfile:
+with open('C:/Hackathon/Code/data.csv') as csvfile:
 	reader = csv.reader(csvfile, delimiter = ' ')
 	for row in reader:
 		x.append(row[0: (len(row))])
@@ -24,9 +24,6 @@ for i in x:
 Y = []
 for i in y:
 	Y.append(i)
-
-#print(str(X[0]) + "\n")
-#print(str(X[0])  + "     " + str(Y[4000]) + "\n")
 
 X = np.asarray(X)
 Y = np.asarray(Y)
@@ -51,7 +48,7 @@ print("AdaBoost classifier")
 print(clf.score(x_test, y_test))
 print("\n")
 
-#BaggingClassifier
+#Bagging Classifier
 
 x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size = 0.1, random_state = 42)
 
@@ -62,7 +59,7 @@ print("Bagging classifier")
 print(clf.score(x_test, y_test))
 print("\n")
 
-#ExtraTreesClassifier
+#ExtraTrees Classifier
 
 x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size = 0.1, random_state = 42)
 
@@ -73,7 +70,7 @@ print("ExtraTrees classifier")
 print(clf.score(x_test, y_test))
 print("\n")
 
-#GradientBoostingClassifier
+#GradientBoosting Classifier
 
 x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size = 0.1, random_state = 42)
 
@@ -84,7 +81,7 @@ print("GradientBoostingClassifier")
 print(clf.score(x_test, y_test))
 print("\n")
 
-#Just Something
+#Trying other classifier
 
 x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size = 0.1, random_state = 42)
 
@@ -95,7 +92,7 @@ print("Just trying something")
 print(bagging.score(x_test, y_test))
 print("\n")
 
-#KneighboursClassifier
+#Kneighbours Classifier
 
 x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size = 0.1, random_state = 42)
 
