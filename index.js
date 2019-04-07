@@ -1,23 +1,31 @@
-const functions = require('firebase-functions');
-const {WebhookClient} = require('dialogflow-fulfillment');
-const {Card, Suggestion} = require('dialogflow-fulfillment');
+window.onload = function() {
+  var testValidation = function(dto, success, error) {
+    console.log("dto....", dto, success, error);
+    if (dto.text.indexOf("world") != -1) return success();
+    return error();
+  };
 
-process.env.DEBUG = 'dialogflow:debug'; // enables lib debugging statements
+  const dispatcher = new cf.EventDispatcher();
+  dispatcher.addEventListener(
+    cf.ChatListEvents.CHATLIST_UPDATED,
+    function(event) {
+      // console.log("chat list updated...", event);
+    },
+    false
+  );
 
-exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
-  const agent = new WebhookClient({ request, response });
-  
-  function equipfun(agent) {
-    
-    let params = agent.getContext('location-followup').parameters;
-    let state = params.param1;
-
-    //console.log(agent.context.get('location-followup').params.state);
-    agent.add('These are the insurances you need. Workers compensation insurance,  General liability insurance, Property insurance if not online business,       Business interruption. For automobile you can have Product liability insurance, Disability insurance, pollution insurance. In your region  you should have commercial flood insurance,  Earthquake insurance,  Terrorism insurance,   Political risk insurance');
-  }
-
-  // Run the proper function handler based on the matched Dialogflow intent name
-  let intentMap = new Map();
-  intentMap.set('equipment', equipfun);
-  agent.handleRequest(intentMap);
-});
+  var conversationalForm = new cf.ConversationalForm({
+    formEl: document.getElementById("form"),
+    context: document.getElementById("cf-context"),
+    eventDispatcher: dispatcher,
+    preventAutoFocus: true,
+    flowStepCallback: function(dto, success, error) {
+      success();
+    },
+    submitCallback: function() {
+      // remove Conversational Form
+      alert("You made it!");
+      console.log("Form submitted...");
+    }
+  });
+};
