@@ -46,5 +46,5 @@ The variation of each gaseous hazard as a graph.
 SMS and Email notifications are sent as soon as the components cross the hazard levels.
 
 **How to run**
-Run the python3 Hackathon.py.
+Run on python3, Hackathon.py.
 It automatically runs another python script automaticEmail.py and Send_sms.py and Web.py
